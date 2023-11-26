@@ -5,3 +5,4 @@
     define('BD', 'cadastro');
 
     $conn = new mysqli(HOST, USER, PASSWORD, BD);
+    
