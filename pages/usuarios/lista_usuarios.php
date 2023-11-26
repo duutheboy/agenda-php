@@ -1,5 +1,6 @@
 <h2 class="text-center mb-5">Usuários</h2>
 
+
 <?php 
 
 $sql = "SELECT * FROM usuarios";
@@ -28,7 +29,7 @@ if($qtd > 0) {
         print "<td>" . $row->tipo_usuario; "</td>";
         print "<td>
             <button onclick=\"location.href='?page=editar&id_usuario=".$row->id_usuario."'\" class='btn btn-success'>Editar</button>
-            <button class='btn btn-danger'>Excluir</button>
+            <button onclick=\"if(confirm('Tem certeza que seja excluir o usuário selecionado?')){location.href='?page=salvar&acao=excluir&id_usuario=".$row->id_usuario."';}else{false;}\" class='btn btn-danger'>Excluir</button>
         </td>";
         print "</tr>";
     }
@@ -36,6 +37,8 @@ if($qtd > 0) {
 }
 
 else {
-    print "<p class= alert alert-danger>Não foi possível encontrar usuários ou você não tem permissão para isso!</p>";
+    print "<div class='alert text-center alert-danger'  role='alert'>
+    Não foi possível encontrar usuários ou você não possui nenhum usuário cadastrado!
+</div>";
 }
 ?>
