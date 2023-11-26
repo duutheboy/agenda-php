@@ -13,11 +13,11 @@ switch ($_REQUEST["acao"]) {
         $res = $conn->query($sql);
 
         if ($res == true) {
-            print "<script>alert('Usuário cadastrado com sucesso');</script>";
-            print "<script>alertlocation.href='?page=listar';</script>";
+            echo "<script>alert('Usuário cadastrado com sucesso');</script>";
+            echo "<script>window.location.href='?page=listar';</script>";
         } else {
-            print "<script>alert('Não foi possível concluir o cadastro');</script>";
-            print "<script>alertlocation.href='?page=cadastro';</script>";
+            echo "<script>alert('Não foi possível concluir');</script>";
+            echo "<script>window.location.href='?page=cadastro';</script>";
         }
 
         break;
