@@ -30,7 +30,7 @@ if($qtd > 0) {
         print "<td>" . $row->telefone; "</td>";
         print "<td>
             <button onclick=\"location.href='?page=editar_cliente&id_cliente=".$row->id_cliente."'\" class='btn btn-success'>Editar</button>
-            <button class='btn btn-danger'>Excluir</button>
+            <button onclick=\"if(confirm('Tem certeza que seja excluir o cliente selecionado?')){location.href='?page=salvar_clientes&acao=excluir_cliente&id_cliente=".$row->id_cliente."';}else{false;}\" class='btn btn-danger'>Excluir</button>
         </td>";
         print "</tr>";
     }
@@ -38,6 +38,8 @@ if($qtd > 0) {
 }
 
 else {
-    print "<p class= alert alert-danger>Não foi possível encontrar usuários ou você não tem permissão para isso!</p>";
+    print "<div class='alert text-center alert-danger'  role='alert'>
+    Não foi possível encontrar clientes ou você não possui nenhum cliente cadastrado!
+</div>";
 }
 ?>

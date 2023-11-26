@@ -21,7 +21,8 @@
                 </div>
                 <div class="card-body">
                     <form action="?page=salvar_clientes" method="POST"> <!-- Método POST para não aparecer a senha que o usuário digitou -->
-                        <input type="hidden" name="acao" value="cadastrar_cliente"> <!-- Acão "cadastrar" irá oculta, o usuário não irá ver a url -->
+                        <input type="hidden" name="acao" value="editar_cliente">
+                        <input type="hidden" name="id_cliente" value="<?php print $row->id_cliente; ?>"> <!-- Acão "cadastrar" irá oculta, o usuário não irá ver a url -->
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="bi bi-person-fill"></i>
