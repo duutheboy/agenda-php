@@ -1,35 +1,69 @@
-<?php 
-    
-    switch ($_REQUEST["acao"]) {
-        case 'cadastrar':
-            $nome = $_POST["nome"];
-            $email = $_POST["email"];
-            $senha = $_POST["senha"];
-            $tipo_usuario = $_POST["tipo"];
+<?php
 
-            $sql = "INSERT INTO usuarios (tipo_usuario, nome, email, senha) VALUES (
+switch ($_REQUEST["acao"]) {
+    case 'cadastrar':
+        $nome = $_POST["nome"];
+        $email = $_POST["email"];
+        $senha = $_POST["senha"];
+        $tipo_usuario = $_POST["tipo"];
+
+        $sql = "INSERT INTO usuarios (tipo_usuario, nome, email, senha) VALUES (
                 '{$tipo_usuario}', '{$nome}', '{$email}', '{$senha}')";
 
-            $res = $conn ->query($sql);
+        $res = $conn->query($sql);
 
-            if($res==true) {
-                print "<script>alert('Usuário cadastrado com sucesso');</script>";
-                print "<script>alertlocation.href='?page=listar';</script>";
-            }
-             
-            else {
-                print "<script>alert('Não foi possível concluir o cadastro');</script>";
-                print "<script>alertlocation.href='?page=cadastro';</script>";
-            }
+        if ($res == true) {
+            print "<script>alert('Usuário cadastrado com sucesso');</script>";
+            print "<script>alertlocation.href='?page=listar';</script>";
+        } else {
+            print "<script>alert('Não foi possível concluir o cadastro');</script>";
+            print "<script>alertlocation.href='?page=cadastro';</script>";
+        }
 
         break;
-        
-        case 'excluir':
-            
-        break;       
-        
-        case 'editar':
-            
-        break;    
 
-    }
+    case 'excluir':
+
+        $sql = "DELETE FROM usuarios WHERE id_usuario=" . $_REQUEST["id_usuario"];
+    
+        $res = $conn->query($sql);
+
+        if ($res == true) {
+            echo "<script>alert('Usuário exlcuido com sucesso');</script>";
+            echo "<script>window.location.href='?page=listar';</script>";
+        } else {
+            echo "<script>alert('Não foi possível concluir');</script>";
+            echo "<script>window.location.href='?page=cadastro';</script>";
+        }
+
+
+
+    case 'editar':
+        $nome = $_POST["nome"];
+        $email = $_POST["email"];
+        $senha = $_POST["senha"];
+        $tipo_usuario = $_POST["tipo"];
+
+        $sql = "UPDATE usuarios SET
+
+                tipo_usuario ='{$tipo_usuario}',
+                nome ='{$nome}',
+                email ='{$email}', 
+                senha ='{$senha}'
+
+                WHERE id_usuario=" . $_REQUEST["id_usuario"];
+
+        $res = $conn->query($sql);
+
+        if ($res == true) {
+            echo "<script>alert('Usuário Editado com sucesso');</script>";
+            echo "<script>window.location.href='?page=listar';</script>";
+        } else {
+            echo "<script>alert('Não foi possível concluir');</script>";
+            echo "<script>window.location.href='?page=cadastro';</script>";
+        }
+
+
+
+        break;
+}
