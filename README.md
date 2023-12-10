@@ -1,2 +1,2 @@
 # crud-php
-estudos de crud em php
+estudo de crud em php
